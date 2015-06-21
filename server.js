@@ -1,6 +1,7 @@
 var mongo = require('mongodb');
 var Server = mongo.Server;
 var Db = mongo.Db;
+var MongoClient = require('mongodb').MongoClient;
 
 var express = require('express');
 var app = express();
@@ -10,7 +11,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/api/users/selectAll', function(req, res){
-    var server = new Server('127.0.0.1', 27017, {auto_reconnect:true});
+    var server = new Server('127.0.0.1', 27017, {auto_reconnect:true, poolSize:1});
     var db = new Db('test',server);
     db.open(function(err, db){
         if(!err){
@@ -20,12 +21,11 @@ app.get('/api/users/selectAll', function(req, res){
                 });
             });
   	} //if
-    db.close(); 
     });
 });
 
 app.get('/api/users/update/:key/:value/:key2/:value2', function(req, res){
-    var server = new Server('127.0.0.1', 27017, {auto_reconnect:true});
+    var server = new Server('127.0.0.1', 27017, {auto_reconnect:true, poolSize:1});
     var db = new Db('test',server);
     db.open(function(err, db){
         if(!err){
@@ -51,7 +51,7 @@ app.get('/api/users/update/:key/:value/:key2/:value2', function(req, res){
 });
 
 app.get('/api/users/:action/:key/:value', function(req, res){
-    var server = new Server('127.0.0.1', 27017, {auto_reconnect:true});
+    var server = new Server('127.0.0.1', 27017, {auto_reconnect:true, poolSize:1});
     var db = new Db('test',server);
     db.open(function(err, db){
         if(!err){
@@ -74,6 +74,9 @@ app.get('/api/users/:action/:key/:value', function(req, res){
 		            res.send('"error":"empty result"');
 		        }
                     });
+		}else if(req.params.action =='insert'){
+            	    collection.insert(query);
+		    res.send('[insert successful] {' + key + ':' + value + '}'); 
 		}else if (req.params.action == 'update'){
                     db.collection('users', function(err,collection){
                         var query_doc = {'first_name':'tom'};
