@@ -16,26 +16,10 @@ var User = new Schema({
 
 var UserModel = mongoose.model('User', User);
 
-// Insert - Method 1
-var record = new UserModel();
-record.first_name = 'hello';
-record.last_name = 'world';
-
 // Insert
-record.save(function (err) {
-    UserModel.find({}, function(err, users) {
-        for (var i=0, counter=users.length; i < counter; i++) {
- 	    var user = users[i];
-	    console.log( "User => _id: " + user._id + ", first_name: " + user.first_name + ", last_name: " + user.last_name );
-
-    }
-  });
-});
-
 UserModel.create({ first_name:"method2", last_name:"m2" }, function (err, small) {
-
   if (err) return handleError(err);
-  console.log("method2 is ok");
+  console.log("User => _id: " + user._id + ", first_name: " + user.first_name + ", last_name: " + user.last_name);
 })
 
 // Update
@@ -48,16 +32,14 @@ UserModel.update(query, { first_name: 'emily' }, options, function (err, numAffe
 
 // Select
 UserModel.find({}, function(err, users) {
-        for (var i=0, counter=users.length; i < counter; i++) {
-            var user = users[i];
-            console.log( "User => _id: " + user._id + ", first_name: " + user.first_name + ", last_name: " + user.last_name );
+    for (var i=0, counter=users.length; i < counter; i++) {
+        var user = users[i];
+        console.log( "User => _id: " + user._id + ", first_name: " + user.first_name + ", last_name: " + user.last_name );
 
     }
-  });
-
+});
 
 // Remove
-/*
 UserModel.remove({first_name:'hello'}, function(err){
     if(err) {
 	throw err;
@@ -65,4 +47,4 @@ UserModel.remove({first_name:'hello'}, function(err){
 	console.log("remove successful");
     }
 });
-*/
+
