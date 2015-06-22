@@ -33,6 +33,7 @@ db.open(function(err, db){
 
 	// Select	
 	db.collection('users', function(err,collection){
+	    // Select One 
 	    var query_doc = {'first_name' : 'tom'};
 	    collection.findOne(query_doc, function(err, user){
 		if(err) console.log(err);
@@ -40,7 +41,7 @@ db.open(function(err, db){
 		    console.log( "[Select] User => _id: " + user._id + ", first_name: " + user.first_name + ", last_name: " + user.last_name + ", age:" + user.age );
 		}
 	    });
-	    // Print all
+	    // Select all
             collection.find().toArray(function(err, users) {
                 users.forEach(function(user) {
                     console.log( "[Select all] User => _id: " + user._id + ", first_name: " + user.first_name + ", last_name: " + user.last_name + ", age:" + user.age );
