@@ -16,14 +16,6 @@ db.open(function(err, db){
 	    var doc2 = {'first_name':'tom_test', 'last_name':'lai_test'};
             collection.insert(doc);
             collection.insert(doc2);
-
-	    // Print all	
-	    /*collection.find().toArray(function(err, users) {
-                users.forEach(function(user) {
-	            console.log( "[Insert - debug] User => _id: " + user._id + ", first_name: " + user.first_name + ", last_name: " + user.last_name + ", age:" + user.age );
-                });
-            });*/	    
-
 	}); // Insert
 
 	// Update		
@@ -48,13 +40,12 @@ db.open(function(err, db){
 		    console.log( "[Select] User => _id: " + user._id + ", first_name: " + user.first_name + ", last_name: " + user.last_name + ", age:" + user.age );
 		}
 	    });
-	    var query_doc = {'first_name':'tom_test'};
-            collection.findOne(query_doc, function(err, user){
-		if(err) console.log(err);
-		if(user){
-		    console.log( "User => _id: " + user._id + ", first_name: " + user.first_name + ", last_name: " + user.last_name + ", age:" + user.age );
-		}
-            });
+	    // Print all
+            collection.find().toArray(function(err, users) {
+                users.forEach(function(user) {
+                    console.log( "[Select all] User => _id: " + user._id + ", first_name: " + user.first_name + ", last_name: " + user.last_name + ", age:" + user.age );
+                });
+            }); 
 	}); //Select
     } // if (!err)
 }); // db.open
