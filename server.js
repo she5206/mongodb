@@ -15,7 +15,7 @@ app.get('/api/users/selectAll', function(req, res){
     var db = new Db('test',server);
     db.open(function(err, db){
         if(!err){
-            db.collection('users', function(err,collection){
+            db.collection('uuus', function(err,collection){
                 collection.find().toArray(function(err, docs){
                     res.send(docs);
                 });

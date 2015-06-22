@@ -12,7 +12,7 @@ db.open(function(err, db){
 	
 	// Insert
 	db.collection('users', function(err, collection){
-	    var doc = {'first_name':'tom', 'last_name':'lai', 'age':'25'};
+	    var doc = {'first_name':'emily', 'last_name':'hsieh', 'age':'24'};
 	    var doc2 = {'first_name':'tom_test', 'last_name':'lai_test'};
             collection.insert(doc);
             collection.insert(doc2);
@@ -26,19 +26,19 @@ db.open(function(err, db){
 
 	}); // Insert
 
-
 	// Update		
 	db.collection('users', function(err,collection){
-	    var query_doc = {'first_name':'tom'};			 
-	    collection.update(query_doc,{'$set':{'age':26}});
+	    if(err){console.log(err);}
+	    var query_doc = {'first_name' : 'emily'}; 
+	    collection.update(query_doc, {'$set':{'age':26}});
 	}); // Update
 		
 	// Remove
 	db.collection('users', function(err,collection){
 	    var query_doc = {'first_name' : 'tom_test'};
-	    collection.remove(query_doc);			
+	    collection.remove(query_doc);		
 	}); // Remove
-	
+
 	// Select	
 	db.collection('users', function(err,collection){
 	    var query_doc = {'first_name' : 'tom'};

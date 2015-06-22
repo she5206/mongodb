@@ -17,17 +17,16 @@ var User = new Schema({
 var UserModel = mongoose.model('User', User);
 
 // Insert
-UserModel.create({ first_name:"method2", last_name:"m2" }, function (err, small) {
+UserModel.create({ first_name:"emily", last_name:"hsieh" }, function (err, user) {
   if (err) return handleError(err);
   console.log("User => _id: " + user._id + ", first_name: " + user.first_name + ", last_name: " + user.last_name);
 })
 
 // Update
-var query = { first_name: 'hello' };
+var query = { first_name: 'emily' };
 var options = { multi: true };
-UserModel.update(query, { first_name: 'emily' }, options, function (err, numAffected) {
+UserModel.update(query, { first_name: 'manchunchun' }, options, function (err, numAffected) {
     console.log(numAffected);
-
 });
 
 // Select
@@ -40,11 +39,11 @@ UserModel.find({}, function(err, users) {
 });
 
 // Remove
-UserModel.remove({first_name:'hello'}, function(err){
+UserModel.remove({first_name:'manchunchun'}, function(err, callback){
     if(err) {
 	throw err;
     }else {
-	console.log("remove successful");
+	console.log(callback.result);
     }
 });
 
