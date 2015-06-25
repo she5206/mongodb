@@ -10,17 +10,17 @@ $ node server.js
 
 ## RESTful API router
 
-### Insert
+#### Insert
 
 http://localhost:27017/insert/:key/:value/:key2/:value2
 
-### Update
+#### Update
 http://localhost:27017/update/:key/:value/:key2/:value2
 
-### Remove
+#### Remove
 http://localhost:27017/remove/:key/:value
 
-### Search
+#### Search
 http://localhost:27017/select/:key/:value
 http://localhost:27017/selectAll
 
