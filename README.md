@@ -8,7 +8,7 @@ Access MongoDB on here => http://www.mongodb.org/downloads
 
 $ node server.js
 
-## RESTful API router
+## API Router Sample
 
 #### Insert
 
